@@ -1,0 +1,29 @@
+
+title_html = """
+<div style="position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+			background: white; padding: 12px 22px; border-radius: 12px;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; font-family: Arial; text-align:center;">
+    <h3 style="margin:0; color:#b71c1c; font-size:21px;">📍 Iran–Israel–USA Conflict 2026 (Mar 5 Update)</h3>
+    <p style="margin:6px 0 0 0; font-size:14px; color:#333;">
+        🟥 Red = Israel/US strikes (incl. torpedo strike (Indian Ocean)) | 🟦 Blue = Iranian retaliation<br>
+        🔥 Heatmaps | 🚀 Animated Missile Trails | ⏱️ Time-Slider (Feb 28 – Mar 5)
+    </p>
+</div>
+"""
+# Add a legend/list of countries involved (floating text box)
+countries_list_html = """
+<div style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 15px; border-radius: 10px;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 1000; font-family: Arial; max-width: 350px;">
+    <h4 style="margin:0 0 10px 0; color:#b71c1c;">Countries Involved in the Conflict (as of Mar 6, 2026)</h4>
+    <ul style="margin:0; padding-left:20px; font-size:13px; line-height:1.5;">
+        <li><b>Direct Belligerents:</b> Iran, United States, Israel</li>
+        <li><b>US Bases/Targets Hit:</b> Qatar, Bahrain, UAE, Kuwait, Saudi Arabia, Jordan, Iraq</li>
+        <li><b>Proxy/Active Fronts:</b> Lebanon (Hezbollah)</li>
+        <li><b>Other Strikes:</b> Azerbaijan, Cyprus (UK base)</li>
+        <li><b>Support/Defensive:</b> United Kingdom, Italy</li>
+    </ul>
+    <p style="margin:10px 0 0 0; font-size:12px; color:#555;">
+        Rapidly evolving; based on public reports.
+    </p>
+</div>
+"""
