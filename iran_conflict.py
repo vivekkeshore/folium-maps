@@ -1,4 +1,5 @@
 import json
+import re
 
 import folium
 from folium import FeatureGroup
@@ -125,20 +126,52 @@ def add_antpaths(
 		).add_to(antpaths_group)
 	antpaths_group.add_to(map_obj)
 
+def parse_event_dates(raw_date: str) -> list[str]:
+	"""Parse raw date text into normalized YYYY-MM-DD values."""
+	tokens = [
+		t.strip()
+		for t in re.split(r"\s*(?:&|,|\band\b)\s*", raw_date)
+		if t.strip()
+	]
+	parsed_dates = []
+	seen = set()
+	current_year = "2026"
+	current_month = None
+
+	for token in tokens:
+		full_match = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", token)
+		month_day_match = re.fullmatch(r"(\d{2})-(\d{2})", token)
+		day_match = re.fullmatch(r"(\d{2})", token)
+
+		if full_match:
+			year, month, day = full_match.groups()
+			current_year, current_month = year, month
+			normalized = f"{year}-{month}-{day}"
+		elif month_day_match:
+			month, day = month_day_match.groups()
+			current_month = month
+			normalized = f"{current_year}-{month}-{day}"
+		elif day_match and current_month is not None:
+			day = day_match.group(1)
+			normalized = f"{current_year}-{current_month}-{day}"
+		else:
+			continue
+
+		if normalized not in seen:
+			seen.add(normalized)
+			parsed_dates.append(normalized)
+
+	return parsed_dates
+
+
 def expand_event_dates(raw_date: str) -> list[str]:
-	"""Normalize event dates and return TimestampedGeoJson-compatible timestamps."""
-	timestamps = []
-	for raw_part in raw_date.split("&"):
-		date_part = raw_part.strip()
-		if not date_part.startswith("2026-"):
-			date_part = f"2026-{date_part}"
-		timestamps.append(f"{date_part}T12:00:00")
-	return timestamps
+	"""Return TimestampedGeoJson-compatible timestamps for event dates."""
+	return [f"{date_part}T12:00:00" for date_part in parse_event_dates(raw_date)]
 
 
 def build_animation_feature(
 	event: dict,
-	timestamp: str,
+	timestamps: list[str],
 	popup_title: str,
 	popup_color: str,
 	fill_color: str,
@@ -149,7 +182,7 @@ def build_animation_feature(
 		"type": "Feature",
 		"geometry": {"type": "Point", "coordinates": [event["lon"], event["lat"]]},
 		"properties": {
-			"times": [timestamp],
+			"times": timestamps,
 			"popup": f'<b style="color:{popup_color}">{popup_title}</b><br><b>{event["name"]}</b><br>Date: {event["date"]}<br><br>{event["desc"]}',
 			"icon": "circle",
 			"iconstyle": {
@@ -186,17 +219,19 @@ def _add_animation_features(
 	features = []
 	for event in events:
 		fill_color, radius = style_resolver(event)
-		for timestamp in expand_event_dates(event["date"]):
-			features.append(
-				build_animation_feature(
-					event,
-					timestamp,
-					popup_title,
-					popup_color,
-					fill_color,
-					radius,
-				)
+		timestamps = expand_event_dates(event["date"])
+		if not timestamps:
+			continue
+		features.append(
+			build_animation_feature(
+				event,
+				timestamps,
+				popup_title,
+				popup_color,
+				fill_color,
+				radius,
 			)
+		)
 	return features
 
 

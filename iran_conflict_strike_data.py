@@ -118,6 +118,41 @@ iran_strike_events = [
         "date": "2026-03-05",
         "desc": "IDF evacuation warnings and strikes on defense industrial base in Tehran Province.",
     },
+	{
+        "name": "Tehran – Oil Storage Depots & Refineries (Shehran & others)",
+        "lat": 35.6892,
+        "lon": 51.3890,
+        "date": "2026-03-05 & 2026-03-06 & 2026-03-07 & 2026-03-08",
+        "desc": "Massive US/Israeli strikes on fuel storage complexes, refineries, and oil depots in/near Tehran; huge fires, explosions, and significant damage to energy infrastructure (first major civil energy targets hit; ongoing waves)."
+    },
+    {
+        "name": "Tehran – Mehrabad Airport & Runways",
+        "lat": 35.6892,
+        "lon": 51.3134,
+        "date": "2026-03-07 & 2026-03-08",
+        "desc": "Intense airstrikes on Mehrabad International Airport (main domestic hub); aircraft burning, explosions, runways/infrastructure heavily damaged (part of escalation on Tehran)."
+    },
+    {
+        "name": "Tehran – Military Academy, Command Centers & Decision-Making Sites",
+        "lat": 35.6892,
+        "lon": 51.3890,
+        "date": "2026-03-05 & 2026-03-06 & 2026-03-07",
+        "desc": "Broad-scale strikes targeting military academy, SNSC (Supreme National Security Council), Presidential Office, Assembly of Experts building, and other leadership/command institutions (effort to disrupt regime decision-making post-Khamenei)."
+    },
+    {
+        "name": "Lorestan Province – Poldokhtar Residential & Military Areas",
+        "lat": 33.15,
+        "lon": 47.71,
+        "date": "2026-03-05 & 2026-03-06",
+        "desc": "Israeli missile strikes on residential and military zones; at least 6 injured (part of ongoing missile production/infrastructure attacks)."
+    },
+    {
+        "name": "Pakdasht – Abbas Abad & Shenzar Industrial/Defense Zones",
+        "lat": 35.48,
+        "lon": 51.68,
+        "date": "2026-03-05",
+        "desc": "IDF evacuation warnings followed by strikes on defense industrial facilities in Tehran Province."
+    }
 ]
 
 retaliation_events = [
@@ -199,17 +234,45 @@ retaliation_events = [
         "desc": "Fresh Iranian hybrid attack on Tel Aviv (ongoing retaliation waves).",
     },
     {
-        "name": "Azerbaijan – Drone/Missile Strikes",
-        "lat": 40.4093,  # Approx Baku area
-        "lon": 49.8671,
-        "date": "2026-03-05",
-        "desc": "First Iranian strikes on Azerbaijan; airspace closed in response.",
+        "name": "Tel Aviv & Central/Northern Israel – Ongoing Hybrid Missile/Drone Barrage",
+        "lat": 32.0853,
+        "lon": 34.7818,
+        "date": "2026-03-05 & 2026-03-06 & 2026-03-07 & 2026-03-08",
+        "desc": "Continued Iranian missile/drone waves on Tel Aviv, central, and northern Israel; air raid sirens, intercepts, some impacts (persistent low-rate but escalating barrages)."
     },
     {
-        "name": "UAE – Oil Port Strike",
+        "name": "Bahrain – Water Desalination Plant & US 5th Fleet Area",
+        "lat": 26.23,
+        "lon": 50.58,
+        "date": "2026-03-07 & 2026-03-08",
+        "desc": "Iranian drone/missile strikes despite partial de-escalation signals; desalination plant hit, explosions near US naval facilities."
+    },
+    {
+        "name": "Qatar – Al Udeid & Other Sites",
+        "lat": 25.117,
+        "lon": 51.315,
+        "date": "2026-03-06 & 2026-03-07 & 2026-03-08",
+        "desc": "Fresh Iranian barrages on Al Udeid Air Base and other targets (despite Pezeshkian's apology to Gulf states)."
+    },
+    {
+        "name": "Kuwait – Missile Strikes (including civilian impacts)",
+        "lat": 29.3759,
+        "lon": 47.9774,
+        "date": "2026-03-07 & 2026-03-08",
+        "desc": "Iranian missiles hit Kuwait; at least 2 killed, Saudi intercepts on additional threats (high-rise and public institution damaged)."
+    },
+    {
+        "name": "UAE – Oil Port & Other Facilities",
         "lat": 25.2048,
         "lon": 55.2708,
-        "date": "2026-03-05",
-        "desc": "Iranian strikes targeted oil port in UAE (part of Gulf retaliation).",
+        "date": "2026-03-05 & 2026-03-06",
+        "desc": "Iranian strikes targeted oil port and other sites in UAE (part of Gulf retaliation escalation)."
     },
+    {
+        "name": "Azerbaijan – Drone/Missile Strikes",
+        "lat": 40.4093,
+        "lon": 49.8671,
+        "date": "2026-03-05 & 2026-03-06",
+        "desc": "First confirmed Iranian strikes on Azerbaijan; airspace closed in response."
+    }
 ]
