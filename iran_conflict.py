@@ -366,6 +366,9 @@ def main():
 		marker_icon="rocket",
 	)
 
+	# Re-add timeline slider layer.
+	add_animation_features(conflict_map)
+
 	conflict_map.get_root().html.add_child(folium.Element(countries_list_html))
 	conflict_map.get_root().html.add_child(folium.Element(title_html))
 	folium.LayerControl(collapsed=False).add_to(conflict_map)
