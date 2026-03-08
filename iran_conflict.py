@@ -24,24 +24,58 @@ def load_india_geojson(map_obj: folium.Map, geojson_path: str):
 	).add_to(map_obj)
 
 
+def group_events_by_location(events: list[dict]) -> list[tuple[float, float, list[dict]]]:
+	"""Group events sharing the same coordinates while preserving input order."""
+	grouped: dict[tuple[float, float], list[dict]] = {}
+	order: list[tuple[float, float]] = []
+	for event in events:
+		key = (round(event["lat"], 6), round(event["lon"], 6))
+		if key not in grouped:
+			grouped[key] = []
+			order.append(key)
+		grouped[key].append(event)
+	return [(lat, lon, grouped[(lat, lon)]) for lat, lon in order]
+
+
+def build_grouped_popup(events: list[dict], color: str, group_name: str) -> str:
+	"""Build one popup that lists all same-location events."""
+	if len(events) == 1:
+		event = events[0]
+		return (
+			f'<b style="color:{color}">{group_name}</b><br><b>{event["name"]}</b>'
+			f'<br>Date: {event["date"]}<br><br>{event["desc"]}'
+		)
+
+	lines = [f'<b style="color:{color}">{group_name} ({len(events)} events at this location)</b>']
+	for idx, event in enumerate(events, start=1):
+		lines.append(
+			f'<br><br><b>{idx}. {event["name"]}</b><br>Date: {event["date"]}<br>{event["desc"]}'
+		)
+	return "".join(lines)
+
+
 def add_strike_markers(
 	map_obj: folium.Map, events: list[dict], color: str, group_name: str
 ):
 	"""Adds markers for strike events with specified color and icon."""
 	feature_group = FeatureGroup(name=group_name)
-	for event in events:
+	for lat, lon, grouped_events in group_events_by_location(events):
 		icon_name = (
 			"sailboat"
-			if "dena" in event["name"].lower() or "torpedo" in event["name"].lower()
+			if any(
+				"dena" in event["name"].lower() or "torpedo" in event["name"].lower()
+				for event in grouped_events
+			)
 			else "burst"
 		)
+		tooltip = grouped_events[0]["name"] if len(grouped_events) == 1 else f"{grouped_events[0]['name']} (+{len(grouped_events) - 1} more)"
 		folium.Marker(
-			[event["lat"], event["lon"]],
+			[lat, lon],
 			popup=folium.Popup(
-				f'<b style="color:{color}">{group_name}</b><br><b>{event["name"]}</b><br>Date: {event["date"]}<br><br>{event["desc"]}',
-				max_width=400,
+				build_grouped_popup(grouped_events, color, group_name),
+				max_width=420,
 			),
-			tooltip=event["name"],
+			tooltip=tooltip,
 			icon=folium.Icon(color=color, icon=icon_name, prefix="fa"),
 		).add_to(feature_group)
 
@@ -125,6 +159,7 @@ def add_antpaths(
 			icon=folium.Icon(color=marker_color, icon=marker_icon, prefix="fa"),
 		).add_to(antpaths_group)
 	antpaths_group.add_to(map_obj)
+
 
 def parse_event_dates(raw_date: str) -> list[str]:
 	"""Parse raw date text into normalized YYYY-MM-DD values."""
