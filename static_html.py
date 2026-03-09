@@ -13,17 +13,17 @@ title_html = """
 # Add a legend/list of countries involved (floating text box)
 countries_list_html = """
 <div style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 15px; border-radius: 10px;
-			box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 1000; font-family: Arial; max-width: 350px;">
-    <h4 style="margin:0 0 10px 0; color:#b71c1c;">Countries Involved in the Conflict (as of Mar 6, 2026)</h4>
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 1000; font-family: Arial; max-width: 380px; overflow-y: auto; max-height: 60vh;">
+    <h4 style="margin:0 0 10px 0; color:#b71c1c;">Countries Involved in the Conflict (as of Mar 9, 2026)</h4>
     <ul style="margin:0; padding-left:20px; font-size:13px; line-height:1.5;">
-        <li><b>Direct Belligerents:</b> Iran, United States, Israel</li>
-        <li><b>US Bases/Targets Hit:</b> Qatar, Bahrain, UAE, Kuwait, Saudi Arabia, Jordan, Iraq</li>
-        <li><b>Proxy/Active Fronts:</b> Lebanon (Hezbollah)</li>
-        <li><b>Other Strikes:</b> Azerbaijan, Cyprus (UK base)</li>
-        <li><b>Support/Defensive:</b> United Kingdom, Italy</li>
+        <li><b>Direct Belligerents:</b> Iran (primary target/retaliator), United States (leading strikes/Operation Epic Fury), Israel (co-leading attacks/regime change goal)</li>
+        <li><b>US Bases/Targets Hit by Iran:</b> Qatar (Al Udeid), Bahrain (5th Fleet HQ + desalination), UAE (Al Dhafra + oil port), Kuwait (Camp Arifjan + civilian), Saudi Arabia (Riyadh facilities + oil), Jordan (US/THAAD sites), Iraq (Baghdad/US positions)</li>
+        <li><b>Proxy/Active Fronts:</b> Lebanon (Hezbollah launching on Israel; Israeli ground invasion south/Beirut/Beqaa; heavy casualties)</li>
+        <li><b>Other Strikes by Iran:</b> Azerbaijan (drones/missiles; airspace closed), Cyprus (UK RAF Akrotiri/Dhekelia bases hit; European evacuations)</li>
+        <li><b>Support/Defensive Roles:</b> United Kingdom (bases/intercepts in Cyprus/Bahrain/Qatar), France/Germany/Italy/Netherlands/Greece (defending Cyprus/Europe; naval/air), NATO (collective intercepts in Turkey airspace)</li>
     </ul>
     <p style="margin:10px 0 0 0; font-size:12px; color:#555;">
-        Rapidly evolving; based on public reports.
+        Rapidly evolving; based on public reports (Al Jazeera, Britannica, Axios, CNN, ISW). Casualties rising; oil prices >$115/barrel; Strait of Hormuz disruptions.
     </p>
 </div>
 """
